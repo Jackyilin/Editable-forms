@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的</title>
+    <style>
+        body{
+            font-size:16px;
+        }
+        table{
+            margin: 15px;
+            border:1px solid black;
+            border-collapse:collapse;;
+            width:400px;
+        }
+        table td,th{
+            width:50%;
+            border:1px solid black;
+            height:30px;
+        }
+        tbody th{
+            background-color:#abc;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th colspan="2"> 鼠标点击表格就可以编辑</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th>学号</th>
+        <th>姓名</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td class="editable">张三</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td class="editable">李四</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td class="editable">王五</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td class="editable">赵六</td>
+    </tr>
+    </tbody>
+    <script src="jquery-1.12.4.min.js"></script>
+    <script>
+        $(function(){
+            $("td.editable").on("click",function(){
+                if($(this).children("input[type='type']").size() == 0){
+                    var $tdInput = $("<input type='text'>");
+                    $tdInput.css("border","0").width($(this).width()).height($(this).height()-2);
+                    $tdInput.val($(this).text());
+                    $(this).empty().append($tdInput);
+                    $tdInput.trigger("select").keyup(function(event){
+                        var keyCode = event.which;
+                        if(keyCode == 13){
+                            $("td.editable").text($(this).val());
+                        }
+
+                    })
+
+                }
+
+
+            })
+
+
+
+
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*$(function(){
+            $("tbody tr:even").css("background-color","#edf");
+            var $editTd = $("td.editable");
+            $editTd.on("click",function(){
+                var $tdObj = $(this);
+                if($(this).children("input[type='text']").size() == 0){
+                    var $inputObj = $("<input type='text'>");
+                    $inputObj.css("border","none").width($(this).width()).height($(this).height()-2);
+                    $inputObj.val($(this).text());
+                    $(this).empty();
+                    $(this).append($inputObj);
+                    $inputObj.trigger("select").keyup(function(event){
+                        var keyCode = event.which;
+                        if(keyCode == 13){
+                            $tdObj.text($(this).val());
+                        }
+                    })
+                }
+            })
+        })*/
+
+
+
+
+
+
+
+
+
+
+    </script>
+</table>
+</body>
+</html>
