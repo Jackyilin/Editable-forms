@@ -56,6 +56,7 @@
     <script>
         $(function(){
             $("td.editable").on("click",function(){
+                var $thisTd = $(this);
                 if($(this).children("input[type='type']").size() == 0){
                     var $tdInput = $("<input type='text'>");
                     $tdInput.css("border","0").width($(this).width()).height($(this).height()-2);
@@ -64,7 +65,7 @@
                     $tdInput.trigger("select").keyup(function(event){
                         var keyCode = event.which;
                         if(keyCode == 13){
-                            $("td.editable").text($(this).val());
+                            $thisTd.text($(this).val());
                         }
 
                     })
